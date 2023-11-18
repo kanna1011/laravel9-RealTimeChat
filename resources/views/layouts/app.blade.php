@@ -15,7 +15,7 @@
     <header>
         <nav>
             <ul>
-                <li><a href="{{ route('chat.index') }}">Home</a></li>
+                <li><a href="/">Home</a></li>
             </ul>
         </nav>
     </header>
