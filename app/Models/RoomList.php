@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class RoomList extends Model
 {
@@ -33,5 +34,15 @@ class RoomList extends Model
             })
             ->get()
             ->toArray();
+    }
+    
+    /**
+     * roomList登録
+     * 
+     * @param array $data
+     */
+    public static function insertRoomList(array $data)
+    {
+        return DB::table('room_list_table')->insert($data);
     }
 }

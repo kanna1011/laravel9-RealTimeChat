@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Message;
 use App\Models\Room;
+use App\Models\RoomList;
 use App\Events\MessageSent;
 use Illuminate\Http\JsonResponse;
 use carbon\CarbonImmutable;
+use Illuminate\Support\Facades\DB;
 
 class MessageController extends Controller
 {
@@ -60,9 +62,71 @@ class MessageController extends Controller
             "created_at" => $datetime
         ];
         Message::insertMessage($data);
-        $data['created_at'] = CarbonImmutable::parse($datetime)->format('Y年m月d日 H:i');
+        $data['created_at'] = CarbonImmutable::parse($datetime)->setTimezone('Asia/Tokyo')->format('Y年m月d日 H:i');
         event(new MessageSent($data));
 
         return response()->json(['message' => '投稿しました。']);
+    }
+
+    /**
+     * @param Request $request
+     * @return View
+     */
+    public function roomCreate(Request $request)
+    {
+        $request->session()->put('user_id',  $request->user_id);
+        $request->session()->put('user_name', $request->user_name);
+        $datetime = new CarbonImmutable();
+        DB::beginTransaction();
+        try {
+            $insertRoomData = [
+                "que_id" => $request->user_id,
+                "con_id" => $request->con_id,
+                "room_name" => $request->room_name,
+                "article_url" => $request->article_url,
+                "archive_flg" => 0,
+                "created_at" => $datetime
+            ];
+            $roomId = Room::insertRoom($insertRoomData);
+            if (empty($roomId)) {
+                DB::rollBack();
+                return abort(500);
+            }
+            $insertFromUser = [
+                "room_id" => $roomId,
+                "user_id" => $request->user_id,
+                "to_user_id" => $request->con_id,
+                "created_at" => $datetime
+            ];
+            $insertToUser = [
+                "room_id" => $roomId,
+                "user_id" => $request->con_id,
+                "to_user_id" => $request->user_id,
+                "created_at" => $datetime
+            ];
+            RoomList::insertRoomList($insertFromUser);
+            RoomList::insertRoomList($insertToUser);
+            $messageData = [
+                "room_id" => $roomId,
+                "user_id" => $request->user_id,
+                "user_name" => $request->user_name,
+                "content" => $request->content,
+                "created_at" => $datetime
+            ];
+            Message::insertMessage($messageData);
+            DB::commit();
+        } catch (\Throwable $e) {
+            DB::rollBack();
+            return abort(500);
+        }
+        $messages = Message::getMessage($roomId);
+        $room = Room::getRoomById($roomId);
+        return view('chat.messageRoom',[
+            "messages" => $messages,
+            "room" => $room,
+            "from_user" => $request->user_id,
+            "to_user" => $request->con_id,
+            "from_user_name" => $request->user_name
+        ]);
     }
 }

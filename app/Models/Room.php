@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Room extends Model
 {
@@ -27,5 +28,16 @@ class Room extends Model
             ->whereNull('deleted_at')
             ->first()
             ->toArray();
+    }
+
+    /**
+     * room登録
+     * 
+     * @param array $data
+     * @return int
+     */
+    public static function insertRoom(array $data)
+    {
+        return DB::table('room_table')->insertGetId($data);
     }
 }
