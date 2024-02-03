@@ -24,7 +24,7 @@
     <main>
         @yield('content')
     </main>
-    <footer>
+    <footer class="footer-container">
         <p>&copy; {{ date('Y') }} Real Time Chat App</p>
     </footer>
 </body>

@@ -54,8 +54,10 @@
 
                         <!-- アイコン画像と記事タイトル -->
                         <div class="room-info">
-                            <img src="{{ $room['icon_path'] }}" alt="アイコン" class="room-icon">
-                            <span class="room-title">記事タイトル</span>
+                            <a href="{{ route('messageRoom.index', $room['room_id']) }}">
+                                <img src="{{ $room['icon_path'] }}" alt="アイコン" class="room-icon">
+                                <span class="room-title">{{ $room['room_name'] }}</span>
+                            </a>
                         </div>
 
                         <!-- 削除ボタン -->

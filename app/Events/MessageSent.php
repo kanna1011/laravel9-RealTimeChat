@@ -3,6 +3,7 @@
 namespace App\Events;
 
 use App\Models\Post;
+use app\Models\Message;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -16,7 +17,7 @@ class MessageSent implements ShouldBroadcast
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     /**
-     * @var Message
+     * @var array
      */
     public $message;
 
@@ -25,7 +26,7 @@ class MessageSent implements ShouldBroadcast
      *
      * @return void
      */
-    public function __construct(Post $message)
+    public function __construct(array $message)
     {
         $this->message = $message;
     }

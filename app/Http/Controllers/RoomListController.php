@@ -32,6 +32,9 @@ class RoomListController extends Controller
     public function getRoomListByUserId(Request $request)
     {
         $userId = $request->input('user_id');
+        $userName = $request->input('user_name');
+        $request->session()->put('user_id', $userId);
+        $request->session()->put('user_name', $userName);
         $roomList = RoomList::getRoomListByUserId($userId);
 
         return $roomList;

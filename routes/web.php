@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\RoomListController;
+use App\Http\Controllers\MessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,8 @@ Route::get('/', function () {
 });
 
 Route::post('/chat/roomList', [RoomListController::class, 'index'])->name('roomList.index');
+Route::get('/chat/messageRoom/{room_id}', [MessageController::class, 'index'])->name('messageRoom.index');
+Route::post('/chat/messageRoom/{room_id}/create', [MessageController::class, 'create'])->name('messageRoom.create');
 // Route::get('/', [ChatController::class, 'index'])->name('chat.index');
 // Route::get('/chat', [ChatController::class, 'index'])->name('chat.index');
 

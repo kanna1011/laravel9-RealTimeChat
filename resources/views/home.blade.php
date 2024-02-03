@@ -13,6 +13,10 @@
                         <label for="user_id">ユーザーID</label>
                         <input type="text" class="form-control" name="user_id" id="user_id" placeholder="ユーザーIDを入力" required>
                     </div>
+                    <div class="form-group">
+                        <label for="user_name">ユーザー名</label>
+                        <input type="text" class="form-control" name="user_name" id="user_name" placeholder="ユーザー名を入力" required>
+                    </div>
 
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">メッセージ一覧ページに入る</button>
