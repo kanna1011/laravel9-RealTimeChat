@@ -1,0 +1,220 @@
+
+body {
+    margin: 0;
+    padding-top: 100px; /* ヘッダーの高さ分の余白を設定 */
+}
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100px;
+    background-color: #fff;
+    z-index: 1000;
+}
+.footer-container {
+    padding: 20px;
+    background-color: #F2F0E2;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.header-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.header-message {
+    text-align: center;
+    margin-top: 0px; /* ロゴとの間隔 */
+    font-size: 14px; /* 文字の大きさ */
+    color: #333; /* 文字の色 */
+}
+/* 全てのaタグのリンクの下線を削除 */
+a {
+    text-decoration: none;
+}
+/* ホバー時も下線を表示しない */
+a:hover {
+    text-decoration: none;
+}
+
+.container {
+    margin: 0 auto;
+    min-width: 600px;
+    max-width: 1400px;
+}
+
+/* ラジオボタンスタイル */
+
+.button-radio input[type="radio"] {
+    display: none; /* ラジオボタンを非表示 */
+}
+
+.button-radio .radio-label {
+    display: inline-block;
+    background-color: #F2F0E2; /* チェックされていない場合の背景色 */
+    color: #806938; /* チェックされていない場合のテキスト色 */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+    transition: background-color 0.3s;
+}
+
+.button-radio:hover .radio-label {
+    background-color: #d3c2a6; /* ホバー時の背景色 */
+}
+
+.button-radio input[type="radio"]:checked + .radio-label {
+    background-color: #806938; /* チェックされた場合の背景色 */
+    color: white; /* チェックされた場合のテキスト色 */
+}
+
+/* モーダルの基本スタイル */
+.modal {
+    display: none; /* デフォルトでは非表示 */
+    position: fixed; /* 固定位置 */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* 半透明の背景 */
+    z-index: 1001;
+}
+
+/* モーダル内部のコンテンツスタイル */
+.modal-content {
+    background-color: #F2F0E2;
+    color: #806938; /* モーダルのテキスト色 */
+    margin: 15% auto; /* 中央配置 */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* 幅 */
+}
+
+/* 閉じるボタンのスタイル */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* チェックボックスのラベルスタイル */
+#settingsForm label {
+    display: block; /* ラベルをブロック要素にして縦に並べる */
+    margin-bottom: 10px; /* ラベル間のマージン */
+    background-color: #F2F0E2; /* 背景色 */
+    color: #806938; /* テキスト色 */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.buttonStyle {
+    background-color: #F2F0E2; /* 背景色 */
+    color: #806938; /* テキスト色 */
+    padding: 10px 20px; /* パディング */
+    border: none; /* 枠線なし */
+    border-radius: 5px; /* 角丸 */
+    cursor: pointer; /* ホバー時のカーソル変更 */
+    margin: 5px; /* マージン */
+    transition: background-color 0.3s; /* 背景色の変更時のトランジション */
+}
+
+.buttonStyle:hover {
+    background-color: #d3c2a6; /* ホバー時の背景色変更 */
+}
+
+#settingsButton {
+    float: right;
+}
+
+.room-list {
+    /* ルームリストのスタイル */
+}
+.room {
+    /* 各ルームのスタイル */
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.room-icon {
+    /* アイコンのスタイル */
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    margin-right: 10px;
+}
+.room-title {
+    /* タイトルのスタイル */
+}
+.delete-room {
+    /* 削除ボタンのスタイル */
+    margin-left: auto;
+    border: none; /* 枠線なし */
+    background-color: #FFF; /* 背景色 */
+    cursor: pointer; /* ホバー時のカーソル変更 */
+}
+
+/* メッセージルーム */
+.room_title_text {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 5px;
+}
+.room_title_text div {
+    padding: 8px 0px;
+}
+
+.article_link {
+    background-color: #eeeeee; /* 背景色 */
+    border-radius: 20px; /* 角丸 */
+    cursor: pointer; /* ホバー時のカーソル変更 */
+    margin: 0;
+    padding: 5px 15px;
+}
+
+.user_list {
+    background-color: #eeeeee; /* 背景色 */
+    border-radius: 20px; /* 角丸 */
+    margin: 0;
+    padding: 5px 15px;
+}
+
+.message {
+    padding: 5px;
+}
+
+.right_message {
+    text-align: right;
+}
+
+.from_user_message {
+    background-color: #F2F0E2; /* 背景色 */
+    border-radius: 20px; /* 角丸 */
+    margin: 0;
+    padding: 5px 20px;
+}
+
+.to_user_message {
+    background-color: #eeeeee; /* 背景色 */
+    border-radius: 20px; /* 角丸 */
+    margin: 0;
+    padding: 5px 20px;
+}

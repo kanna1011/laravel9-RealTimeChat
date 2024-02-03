@@ -10,19 +10,21 @@
     <script type="module" src="https://cdn.jsdelivr.net/npm/laravel-echo@1.11.0/dist/echo.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     @vite('resources/js/app.js')
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
 <body>
     <header>
-        <nav>
-            <ul>
-                <li><a href="{{ route('chat.index') }}">Home</a></li>
-            </ul>
-        </nav>
+        <div class="header-container">
+            <a href="/">
+                <img src="{{ asset('storage/logo.png') }}" alt="ロゴ" class="header-logo">
+                <p class="header-message">全国の犬猫ペットの里親募集マッチングサイト</p>
+            </a>
+        </div>
     </header>
     <main>
         @yield('content')
     </main>
-    <footer>
+    <footer class="footer-container">
         <p>&copy; {{ date('Y') }} Real Time Chat App</p>
     </footer>
 </body>

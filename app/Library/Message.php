@@ -4,6 +4,8 @@ namespace App\Library;
 
 class Message
 {
-    public $message_id;
-    public $message;
+    public $room_id;
+    public $user_id;
+    public $user_name;
+    public $content;
 }

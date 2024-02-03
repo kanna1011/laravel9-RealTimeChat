@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\RoomListController;
+use App\Http\Controllers\MessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,11 +16,13 @@ use App\Http\Controllers\ChatController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('home');
+});
 
-
+Route::post('/chat/roomList', [RoomListController::class, 'index'])->name('roomList.index');
+Route::get('/chat/messageRoom/{room_id}', [MessageController::class, 'index'])->name('messageRoom.index');
+Route::post('/chat/messageRoom/{room_id}/create', [MessageController::class, 'create'])->name('messageRoom.create');
 // Route::get('/', [ChatController::class, 'index'])->name('chat.index');
 // Route::get('/chat', [ChatController::class, 'index'])->name('chat.index');
 
@@ -26,6 +30,6 @@ use App\Http\Controllers\ChatController;
 // Route::post('/chat', [ChatController::class, 'store'])->name('chat.store');
 // Route::get('/chat/{chatRoom}', [ChatController::class, 'show'])->name('chat.show');
 
-Route::get('/', [ChatController::class, 'index'])->name('chat.index');
-Route::get("posts", [ChatController::class, 'index'])->name('post.index');
-Route::post("posts/create", [ChatController::class, 'create'])->name('post.create');
+// Route::get('/', [ChatController::class, 'index'])->name('chat.index');
+// Route::get("posts", [ChatController::class, 'index'])->name('post.index');
+// Route::post("posts/create", [ChatController::class, 'create'])->name('post.create');
