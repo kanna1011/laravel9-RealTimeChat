@@ -179,3 +179,49 @@ a:hover {
     min-height: 50vh;
     overflow-y: auto;
 }
+
+/* フォームコンテナ */
+.top {
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* フォームタイトル */
+h2 {
+    color: #806938;
+    text-align: center;
+}
+
+/* フォーム要素 */
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* ラベル */
+.form-group label {
+    color: #806938;
+    font-weight: bold;
+}
+
+/* 入力フィールド */
+.form-control {
+    border: 2px solid #806938;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+/* 登録ボタン */
+.btn-primary {
+    background-color: #806938;
+    color: #F2F0E2;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #5C5129;
+}

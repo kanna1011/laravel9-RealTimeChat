@@ -27,6 +27,7 @@ Route::post('/login', [LoginContoroller::class, 'login'])->name('login');
 Route::get('/login', [LoginContoroller::class, 'login'])->name('login');
 Route::get('/register', [RegisterController::class, 'create'])->name('register.create');
 Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+Route::get('/logout', [LogoutController::class, 'destroy'])->name('logout')->middleware('auth');
 Route::post('/logout', [LogoutController::class, 'destroy'])->name('logout')->middleware('auth');
 
 Route::group(['middleware' => 'auth'], function () {

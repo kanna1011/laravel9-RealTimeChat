@@ -23,7 +23,7 @@
         <div id="chat-room">
             <div id="messages">
                 @foreach ($messages as $message)
-                @if ($message['user_id'] === $from_user)
+                @if ($message['user_id'] == $from_user)
                 <div class="message right_message">
                     <span class="message_info">
                         {{ \Carbon\CarbonImmutable::parse($message['created_at'])->setTimezone('Asia/Tokyo')->format('Y年m月d日 H:i') }}&emsp;{{ $message['user_name'] }}
