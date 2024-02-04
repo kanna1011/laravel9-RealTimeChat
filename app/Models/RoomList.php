@@ -18,15 +18,15 @@ class RoomList extends Model
     /**
      * user_idをもとにユーザが参加しているメッセージルームを取得
      * 
-     * @param string $userId
+     * @param int $userId
      * @return array
      */
-    public static function getRoomListByUserId(string $userId): array
+    public static function getRoomListByUserId(int $userId): array
     {
         return self::where('user_id', $userId)
             ->select([
-                'room_list_table.room_id', 'room_list_table.to_user_id', 'room_list_table.icon_path',
-                'room_table.que_id', 'room_table.con_id', 'room_table.room_name', 'room_table.article_url', 'room_table.archive_flg'
+                'room_list_table.*',
+                'room_table.*'
             ])
             ->whereNull('room_list_table.deleted_at')
             ->join('room_table', function ($join) {
@@ -35,7 +35,27 @@ class RoomList extends Model
             ->get()
             ->toArray();
     }
-    
+
+    /**
+     * room_idをもとに相手ユーザを取得
+     * 
+     * @param int $roomId
+     * @param int $userId
+     * @return array
+     */
+    public static function getToUsers(int $roomId, int $userId): array
+    {
+        return self::where('room_id', $roomId)
+            ->select('users.name')
+            ->where('user_id', '<>', $userId)
+            ->whereNull('room_list_table.deleted_at')
+            ->join('users', function ($join) {
+                $join->on('room_list_table.user_id', '=', 'users.id');
+            })
+            ->get()
+            ->toArray();
+    }
+
     /**
      * roomList登録
      * 

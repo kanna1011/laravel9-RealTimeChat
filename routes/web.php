@@ -2,8 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChatController;
-use App\Http\Controllers\RoomListController;
+use App\Http\Controllers\RoomController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Auth\LoginContoroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,17 +23,17 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::post('/chat/roomList', [RoomListController::class, 'index'])->name('roomList.index');
-Route::get('/chat/messageRoom/{room_id}', [MessageController::class, 'index'])->name('messageRoom.index');
-Route::post('/chat/messageRoom/{room_id}/create', [MessageController::class, 'create'])->name('messageRoom.create');
-Route::post('/chat/messageRoom/roomCreate', [MessageController::class, 'roomCreate'])->name('messageRoom.roomCreate');
-// Route::get('/', [ChatController::class, 'index'])->name('chat.index');
-// Route::get('/chat', [ChatController::class, 'index'])->name('chat.index');
+Route::post('/login', [LoginContoroller::class, 'login'])->name('login');
+Route::get('/login', [LoginContoroller::class, 'login'])->name('login');
+Route::get('/register', [RegisterController::class, 'create'])->name('register.create');
+Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+Route::post('/logout', [LogoutController::class, 'destroy'])->name('logout')->middleware('auth');
 
-// Route::get('/chat/create', [ChatController::class, 'create'])->name('chat.create');
-// Route::post('/chat', [ChatController::class, 'store'])->name('chat.store');
-// Route::get('/chat/{chatRoom}', [ChatController::class, 'show'])->name('chat.show');
-
-// Route::get('/', [ChatController::class, 'index'])->name('chat.index');
-// Route::get("posts", [ChatController::class, 'index'])->name('post.index');
-// Route::post("posts/create", [ChatController::class, 'create'])->name('post.create');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/chat/roomList', [RoomController::class, 'index'])->name('roomList.index');
+    Route::post('/chat/roomList', [RoomController::class, 'index'])->name('roomList.index');
+    Route::get('/chat/create', [RoomController::class, 'create'])->name('room.create');
+    Route::post('/chat/create', [RoomController::class, 'store'])->name('room.store');
+    Route::get('/chat/messageRoom/{room_id}', [MessageController::class, 'index'])->name('messageRoom.index');
+    Route::post('/chat/messageRoom/{room_id}/create', [MessageController::class, 'create'])->name('messageRoom.create');
+});

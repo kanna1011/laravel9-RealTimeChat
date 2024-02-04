@@ -41,4 +41,29 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * 登録
+     * 
+     * 
+     */
+    public static function insertUser(array $data)
+    {
+        $id = DB::table('room_list_table')->insertGetId($data);
+
+        return self::where('id', $id);
+    }
+
+    /**
+     * ログイン中以外のユーザを取得
+     * 
+     * @param int $id
+     */
+    public static function getUsers(int $id)
+    {
+        return self::where('id', '<>', $id)
+            ->select(['id', 'name'])
+            ->get()
+            ->toArray();
+    }
 }
