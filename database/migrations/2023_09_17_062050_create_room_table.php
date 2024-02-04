@@ -15,11 +15,7 @@ return new class extends Migration
     {
         Schema::create('room_table', function (Blueprint $table) {
             $table->id()->comment('Room id');
-            $table->string('que_id', 255)->comment('Questioner id');
-            $table->string('con_id')->comment('Contributor id');
             $table->string('room_name')->comment('Room name');
-            $table->string('article_url')->comment('Article url');
-            $table->boolean('archive_flg')->comment('Archive flg');
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable()->comment('Delete Date');
         });

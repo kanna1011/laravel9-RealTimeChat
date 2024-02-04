@@ -25,7 +25,10 @@ class Message extends Model
     public static function getMessage(int $roomId)
     {
         return self::where('room_id', $roomId)
-            ->select('*')
+            ->select(['message_table.*', 'users.name as user_name'])
+            ->join('users', function ($join) {
+                $join->on('message_table.user_id', '=', 'users.id');
+            })
             ->whereNull('deleted_at')
             ->orderBy('created_at', 'asc')
             ->get()

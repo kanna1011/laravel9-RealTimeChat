@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,12 +13,12 @@
     @vite('resources/js/app.js')
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
+
 <body>
     <header>
         <div class="header-container">
             <a href="/">
-                <img src="{{ asset('storage/logo.png') }}" alt="ロゴ" class="header-logo">
-                <p class="header-message">全国の犬猫ペットの里親募集マッチングサイト</p>
+                <p class="header-message">CHAT</p>
             </a>
         </div>
     </header>
@@ -28,4 +29,5 @@
         <p>&copy; {{ date('Y') }} Real Time Chat App</p>
     </footer>
 </body>
+
 </html>

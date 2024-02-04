@@ -16,8 +16,6 @@ return new class extends Migration
         Schema::create('room_list_table', function (Blueprint $table) {
             $table->foreignId('room_id')->comment('Room id');
             $table->string('user_id', 255)->comment('User id');
-            $table->string('to_user_id', 255)->comment('To user id');
-            $table->string('icon_path', 255)->nullable()->comment('Icon path');
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable()->comment('Delete Date');
         });

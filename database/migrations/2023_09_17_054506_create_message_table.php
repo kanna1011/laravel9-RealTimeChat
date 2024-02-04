@@ -17,10 +17,8 @@ return new class extends Migration
             $table->id()->comment('Message id');
             $table->foreignId('room_id')->comment('Room id');
             $table->string('user_id', 255)->comment('User id');
-            $table->string('user_name', 255)->comment('User name');
             $table->text('content')->nullable()->comment('Content');
             $table->string('file_path', 255)->nullable()->comment('File path');
-            $table->string('icon_path', 255)->nullable()->comment('Icon path');
             $table->timestamp('read_at')->nullable()->comment('Read at');
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable()->comment('Delete Date');
